@@ -12,7 +12,7 @@ st.set_page_config(
 st.title(Config.PAGE_TITLE)
 
 os.environ['OLLAMA_HOST'] = 'http://172.205.182.197:11434'
-print("OLLAMA_HOST:", os.getenv("OLLAMA_HOST"))
+st.write("OLLAMA_HOST:", os.getenv("OLLAMA_HOST"))
 
 def testchat(user_prompt, model):
     stream = ollama.chat(
