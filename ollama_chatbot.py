@@ -12,6 +12,19 @@ st.title(Config.PAGE_TITLE)
 
 os.environ['OLLAMA_HOST'] = 'http://172.205.182.197:11434'
 
+def testchat(user_prompt, model):
+    stream = ollama.chat(
+        model=model,
+        messages=[
+            {'role': 'assistant', 'content': "System prompt here"},
+            {'role': 'user', 'content': f"Model being used is {model}.{user_prompt}"}
+        ],
+        stream=True,
+    )
+    return stream
+
+st.write(testchat('Hello','codellama:14b')
+
 # sets up sidebar nav widgets
 with st.sidebar:   
     st.markdown("# Chat Options")
