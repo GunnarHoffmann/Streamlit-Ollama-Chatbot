@@ -35,7 +35,7 @@ def testchat(user_prompt, model):
     )
     return stream
 
-st.write(testchat('Hello','codellama:14b'))
+#st.write(testchat('Hello','codellama:7b'))
 
 # sets up sidebar nav widgets
 with st.sidebar:   
