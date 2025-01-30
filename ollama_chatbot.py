@@ -11,6 +11,16 @@ st.set_page_config(
 
 st.title(Config.PAGE_TITLE)
 
+import httpx
+
+ollama_url = "http://172.205.182.197:11434/api/generate"
+
+try:
+    response = httpx.post(ollama_url, json={"model": "mistral", "prompt": "Hello!"})
+    st.write(response.json())
+except httpx.ConnectError as e:
+    st.write("Cannot connect to Ollama:", e)
+
 os.environ['OLLAMA_HOST'] = 'http://172.205.182.197:11434'
 st.write("OLLAMA_HOST:", os.getenv("OLLAMA_HOST"))
 
