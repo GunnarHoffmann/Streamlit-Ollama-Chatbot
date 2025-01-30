@@ -9,7 +9,8 @@ st.set_page_config(
 
 st.title(Config.PAGE_TITLE)
 
-
+# Specify the API endpoint
+os.environ['OLLAMA_HOST'] = 'http://172.205.182.197:11434'
 
 # sets up sidebar nav widgets
 with st.sidebar:   
