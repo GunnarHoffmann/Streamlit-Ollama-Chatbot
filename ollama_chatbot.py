@@ -16,7 +16,7 @@ import httpx
 ollama_url = "http://172.205.182.197:11434/api/generate"
 
 try:
-    response = httpx.post(ollama_url, json={"model": "mistral", "prompt": "Hello!"})
+    response = httpx.post(ollama_url, json={"model": "codellama:14b", "prompt": "Hello!"})
     st.write(response.json())
 except httpx.ConnectError as e:
     st.write("Cannot connect to Ollama:", e)
