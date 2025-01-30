@@ -8,6 +8,9 @@ from config import Config
 
 system_prompt = Config.SYSTEM_PROMPT
 
+# Specify the API endpoint
+ollama.api_host = "http://your-ollama-server:11434"
+
 def chat(user_prompt, model):
     stream = ollama.chat(
         model=model,
