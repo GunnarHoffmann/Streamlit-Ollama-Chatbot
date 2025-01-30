@@ -20,7 +20,7 @@ def test_ollama_connection():
                 "http://172.205.182.197:11434/api/generate",
                 json={"model": "codellama:7b", "prompt": "Hello!"}
             )
-        st.write(response.json())  # Print response if successful
+        st.write(response.text)  # Print response if successful
     except httpx.ReadTimeout:
         st.write("❌ Ollama is taking too long to respond!")
     except httpx.ConnectError:
