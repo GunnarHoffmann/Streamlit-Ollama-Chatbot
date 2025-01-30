@@ -9,8 +9,7 @@ st.set_page_config(
 
 st.title(Config.PAGE_TITLE)
 
-# Specify the API endpoint
-ollama.api_host = "http://your-ollama-server:11434"
+
 
 # sets up sidebar nav widgets
 with st.sidebar:   
