@@ -13,13 +13,20 @@ st.title(Config.PAGE_TITLE)
 
 import httpx
 
-ollama_url = "http://172.205.182.197:11434/api/generate"
+def test_ollama_connection():
+    try:
+        with httpx.Client(timeout=60.0) as client:  # Set a longer timeout
+            response = client.post(
+                "http://172.205.182.197:11434/api/generate",
+                json={"model": "mistral", "prompt": "Hello!"}
+            )
+        st.write(response.json())  # Print response if successful
+    except httpx.ReadTimeout:
+        st.write("❌ Ollama is taking too long to respond!")
+    except httpx.ConnectError:
+        st.write("❌ Cannot connect to Ollama!")
 
-try:
-    response = httpx.post(ollama_url, json={"model": "codellama:7b", "prompt": "Hello!"})
-    st.write(response.json())
-except httpx.ConnectError as e:
-    st.write("Cannot connect to Ollama:", e)
+test_ollama_connection()
 
 os.environ['OLLAMA_HOST'] = 'http://172.205.182.197:11434'
 st.write("OLLAMA_HOST:", os.getenv("OLLAMA_HOST"))
