@@ -18,7 +18,7 @@ def test_ollama_connection():
         with httpx.Client(timeout=60.0) as client:  # Set a longer timeout
             response = client.post(
                 "http://172.205.182.197:11434/api/generate",
-                json={"model": "mistral", "prompt": "Hello!"}
+                json={"model": "codellama:7b", "prompt": "Hello!"}
             )
         st.write(response.json())  # Print response if successful
     except httpx.ReadTimeout:
