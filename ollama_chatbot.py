@@ -32,17 +32,21 @@ os.environ['OLLAMA_HOST'] = 'http://172.205.182.197:11434'
 st.write("OLLAMA_HOST:", os.getenv("OLLAMA_HOST"))
 
 def testchat(user_prompt, model):
-    stream = ollama.chat(
-        model=model,
-        messages=[
-            {'role': 'assistant', 'content': "System prompt here"},
-            {'role': 'user', 'content': f"Model being used is {model}.{user_prompt}"}
-        ],
-        stream=True,
-    )
-    return stream
+    try:
+        stream = ollama.chat(
+            model=model,
+            messages=[
+                {'role': 'assistant', 'content': "System prompt here"},
+                {'role': 'user', 'content': f"Model being used is {model}. {user_prompt}"}
+            ],
+            stream=True,
+        )
+        return stream
+    except Exception as e:
+        return f"Error: {str(e)}"
 
-#st.write(testchat('Hello','codellama:7b'))
+
+st.write(testchat('Hello','codellama:7b'))
 
 # sets up sidebar nav widgets
 with st.sidebar:   
