@@ -4,12 +4,13 @@ https://www.youtube.com/@DevTechBytes
 """
 
 import ollama
+import os
 from config import Config
 
 system_prompt = Config.SYSTEM_PROMPT
 
 # Specify the API endpoint
-ollama.api_host = "http://172.205.182.197:11434"
+os.environ['OLLAMA_HOST'] = 'http://172.205.182.197:11434'
 
 def chat(user_prompt, model):
     stream = ollama.chat(
