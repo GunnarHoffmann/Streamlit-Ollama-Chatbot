@@ -11,43 +11,6 @@ st.set_page_config(
 
 st.title(Config.PAGE_TITLE)
 
-import httpx
-
-def test_ollama_connection():
-    try:
-        with httpx.Client(timeout=60.0) as client:  # Set a longer timeout
-            response = client.post(
-                "http://172.205.182.197:11434/api/generate",
-                json={"model": "deepseek-r1:14b", "prompt": "Hello!"}
-            )
-        st.write(response.text)  # Print response if successful
-    except httpx.ReadTimeout:
-        st.write("❌ Ollama is taking too long to respond!")
-    except httpx.ConnectError:
-        st.write("❌ Cannot connect to Ollama!")
-
-test_ollama_connection()
-
-os.environ['OLLAMA_HOST'] = 'http://172.205.182.197:11434'
-st.write("OLLAMA_HOST:", os.getenv("OLLAMA_HOST"))
-
-def testchat(user_prompt, model):
-    try:
-        stream = ollama.chat(
-            model=model,
-            messages=[
-                {'role': 'assistant', 'content': "System prompt here"},
-                {'role': 'user', 'content': f"Model being used is {model}. {user_prompt}"}
-            ],
-            stream=True,
-        )
-        return stream
-    except Exception as e:
-        return f"Error: {str(e)}"
-
-
-st.write(testchat('Hello','codellama:7b'))
-
 # sets up sidebar nav widgets
 with st.sidebar:   
     st.markdown("# Chat Options")
